@@ -23,8 +23,6 @@ xo(1) = 8 → initial estimate of the elastic parameter (scaled) xo(2) = 0.23 �
 
 The optimization is carried out using the Nelder–Mead simplex algorithm via the fminsearch function. This method is derivative-free and suitable for nonlinear problems where gradient information may not be available.
 
-Perfeito — mantendo exatamente o mesmo padrão técnico e linguagem do anterior 👇
-
 ##########################################################################################################################
 
 The function Funobj2_Prima_trans_iso_BasaltoIrregular1.m defines the objective function used in the optimization process to calibrate the elastic properties of a three-dimensional transversely isotropic basalt rock model.
