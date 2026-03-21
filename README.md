@@ -25,7 +25,7 @@ The optimization is carried out using the Nelder–Mead simplex algorithm via th
 
 ##########################################################################################################################
 
-The function Funobj2_Prima_trans_iso_BasaltoIrregular1.m defines the objective function used in the optimization process to calibrate the elastic properties of a three-dimensional transversely isotropic basalt rock model.
+The function Funobj2_Prima_trans_iso_BasaltoIrregular1.m defines the objective function used in the optimization process to calibrate the elastic properties of a three-dimensional isotropic basalt rock model.
 
 The function takes as input a vector x containing the design variables and returns a scalar value yout, which represents the error between experimental and numerically computed natural frequencies.
 
