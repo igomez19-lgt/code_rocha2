@@ -37,11 +37,8 @@ The elastic modulus is defined as Modulo = x(1) × 10¹⁰, scaling the optimiza
 
 The Poisson’s ratio is defined as Poisson = x(2), considering a scaling factor.
 
-Based on these parameters, the function constructs a transversely isotropic elastic model, assuming equal properties in the principal directions:
+Based on these parameters, the function constructs a isotropic elastic model, assuming equal properties in the principal directions:
 
-( E_X = E_Y = E_Z )
-( \nu_{XY} = \nu_{YZ} = \nu_{XZ} )
-Shear moduli are computed using the isotropic relation: ( G = \dfrac{E}{2(1+\nu)} )
 Next, the function generates an input file for the numerical simulation. It reads a template file (Prima_trans_iso_BasaltoIrregular1.txt) and replaces placeholder strings (e.g., E_X, PR_XY, etc.) with the current values of the material parameters. The modified content is then written to a new file (Prima_trans_iso_Final_BasaltoIrregular1.txt), which serves as input for the finite element model.
 
 The numerical simulation is executed externally using ANSYS in batch mode via a system command. This step runs the finite element analysis with the updated material properties.
