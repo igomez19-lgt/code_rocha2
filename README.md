@@ -175,7 +175,7 @@ G = E / (2 · (1 + ν))
 ##  Suggested Improvements
 
 - Parallel execution of simulations  
-- Use of robust optimization methods (e.g., `lsqnonlin`)  
+- Use another optimization methods (e.g., `lsqnonlin`)  
 - Implementation of logging and error handling  
 - Automated mesh sensitivity analysis  
 
