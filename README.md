@@ -1,5 +1,4 @@
-# Numerical Calibration of Basalt Specimens using ANSYS Modal Analysis
-
+# Numerical Calibration of Rock Specimens Based on ANSYS Modal Analysis
 
 ---
 
