@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Overview
+##  Overview
 
 This repository contains MATLAB scripts developed for the **calibration of a finite element model** of basalt specimens using **modal analysis performed in ANSYS**.
 
@@ -21,7 +21,7 @@ The primary goal is to match numerical predictions with **experimental flexural 
 
 ---
 
-## 🎯 Objective
+## Objective
 
 The objective of this project is to estimate material parameters that minimize the discrepancy between:
 
@@ -34,7 +34,7 @@ The calibration focuses on:
 
 ---
 
-## 🧠 Methodology
+##  Methodology
 
 The calibration procedure follows these steps:
 
@@ -47,7 +47,7 @@ The calibration procedure follows these steps:
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 .
@@ -62,7 +62,7 @@ The calibration procedure follows these steps:
 
 ---
 
-## ⚙️ Requirements
+##  Requirements
 
 - MATLAB  
 - ANSYS Mechanical APDL (batch mode enabled)  
@@ -70,7 +70,7 @@ The calibration procedure follows these steps:
 
 ---
 
-## 🚀 How to Use
+##  How to Use
 
 ### 1. Prepare ANSYS Template
 
@@ -126,7 +126,7 @@ This step:
 
 ---
 
-## 📐 Objective Function
+##  Objective Function
 
 The error function is defined as:
 
@@ -139,7 +139,7 @@ Where:
 
 ---
 
-## 📊 Output
+##  Output
 
 The workflow provides:
 
@@ -155,7 +155,7 @@ The workflow provides:
 
 ---
 
-## 🧪 Assumptions
+##  Assumptions
 
 - Linear elastic and isotropic material behavior  
 - Shear modulus computed as:
@@ -167,7 +167,7 @@ G = E / (2 · (1 + ν))
 
 ---
 
-## ⚠️ Limitations
+##  Limitations
 
 - No error handling for ANSYS execution failures  
 - Sequential execution (no parallelization)  
@@ -176,7 +176,7 @@ G = E / (2 · (1 + ν))
 
 ---
 
-## 🔧 Suggested Improvements
+##  Suggested Improvements
 
 - Parallel execution of simulations  
 - Use of robust optimization methods (e.g., `lsqnonlin`)  
@@ -185,7 +185,7 @@ G = E / (2 · (1 + ν))
 
 ---
 
-## 📚 Applications
+##  Applications
 
 - Rock mechanics and geomaterials characterization  
 - Finite element model updating  
@@ -194,7 +194,7 @@ G = E / (2 · (1 + ν))
 
 ---
 
-## 👤 Author
+##  Author
 
 Developed for academic research in numerical modeling and calibration of geomaterials.
 
