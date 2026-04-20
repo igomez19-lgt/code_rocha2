@@ -192,8 +192,13 @@ G = E / (2 · (1 + ν))
 
 ##  Author
 
-Developed for academic research in numerical modeling and calibration of geomaterials.
+Developed by researchers from the Federal University of Latin American Integration (UNILA):
 
+- Jair Stivenz Castaño Delgado  
+- Gisele Suhett Helmer  
+- Diego Moraes Flores  
+- Adalto Gonçalves de Lima  
+- Ivan Dario Gomez Araujo
 ---
 
 ## 📄 License
