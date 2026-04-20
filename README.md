@@ -201,6 +201,3 @@ Developed by researchers from the Federal University of Latin American Integrati
 - Ivan Dario Gomez Araujo
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
