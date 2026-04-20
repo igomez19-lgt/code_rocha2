@@ -1,8 +1,5 @@
 # Numerical Calibration of Basalt Specimens using ANSYS Modal Analysis
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![DOI](https://img.shields.io/badge/DOI-10.0000%2Fexample-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
