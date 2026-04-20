@@ -129,15 +129,14 @@ This step:
 ##  Objective Function
 
 The error function is defined as:
-
+```
 Error = w_flex · |(f_num² − f_ref²) / f_ref²|  
         + w_tors · |(f_num² − f_ref²) / f_ref²|
 
 Where:
 - f_num = numerical frequency  
 - f_ref = experimental/reference frequency  
-
----
+```
 
 ##  Output
 
