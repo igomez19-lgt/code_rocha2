@@ -5,7 +5,7 @@
 ![DOI](https://img.shields.io/badge/DOI-10.0000%2Fexample-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-## 📌 Overview
+##  Overview
 
 This repository provides MATLAB scripts for the **calibration of a numerical finite element model** of basalt specimens using **modal analysis in ANSYS**.
 
@@ -20,7 +20,7 @@ The goal is to match numerical results with **experimental flexural and torsiona
 
 ---
 
-## 🎯 Objective
+##  Objective
 
 The main objective is to estimate material parameters that minimize the difference between:
 
@@ -33,7 +33,7 @@ The calibration focuses on:
 
 ---
 
-## 🧠 Methodology
+##  Methodology
 
 The process follows these steps:
 
@@ -46,7 +46,7 @@ The process follows these steps:
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 
 ├── Funobj2_Prima_trans_iso_BasaltoIrregular1.m
@@ -67,7 +67,7 @@ The process follows these steps:
 
 ---
 
-## 🚀 How to Use
+##  How to Use
 
 ### 1. Prepare ANSYS Template
 
@@ -87,34 +87,97 @@ G_XY, G_YZ, G_XZ
 ```matlab
 !"C:\Program Files\ANSYS Inc\v192\ansys\bin\winx64\ANSYS192.exe"
 
+## 🚀 Usage
 
-### Run Calibration
-main_optimization
-📐 Objective Function
-Error = w_flex * |(f_num^2 - f_ref^2)/f_ref^2|
-      + w_tors * |(f_num^2 - f_ref^2)/f_ref^2|
-📊 Output
-Calibrated parameters (E, ν)
-Natural frequencies (flexural, torsional)
-Optimization history
-🧪 Assumptions
-G = E / (2 * (1 + ν))
-Isotropic material
-ANSYS batch execution
-Fixed output format
-⚠️ Limitations
-No ANSYS error handling
-Sequential execution
-Manual path configuration
-🔧 Suggested Improvements
-Parallel execution
-Robust optimization (lsqnonlin)
-Logging system
-Mesh sensitivity analysis
-📚 Applications
-Rock mechanics
-FEM model updating
-Structural dynamics
-👤 Author
+### 3. Run a Single Simulation
+
+Execute the following script in MATLAB:
+
+`run_simulation`
+
+This will:
+- Update material parameters  
+- Run ANSYS in batch mode  
+- Extract natural frequencies  
+
+---
+
+### 4. Run Calibration
+
+Execute:
+
+`main_optimization`
+
+This will:
+- Minimize the objective function  
+- Calibrate material properties  
+- Output optimized parameters  
+
+---
+
+## 📐 Objective Function
+
+The error is defined as:
+
+Error = w_flex · |(f_num² - f_ref²) / f_ref²| + w_tors · |(f_num² - f_ref²) / f_ref²|
+
+Where:
+- f_num: numerical frequency  
+- f_ref: experimental/reference frequency  
+
+---
+
+## 📊 Output
+
+- Calibrated material parameters:
+  - Young’s modulus (E)
+  - Poisson’s ratio (ν)
+
+- Natural frequencies:
+  - Flexural mode
+  - Torsional mode
+
+- Optimization convergence history  
+
+---
+
+## 🧪 Assumptions
+
+- Isotropic material behavior  
+- Shear modulus computed as:
+
+G = E / (2 · (1 + ν))
+
+- ANSYS executed in batch mode  
+- Fixed and consistent output format  
+
+---
+
+## ⚠️ Limitations
+
+- No error handling for ANSYS execution  
+- Sequential execution (no parallelization)  
+- Manual configuration of file paths  
+
+---
+
+## 🔧 Suggested Improvements
+
+- Parallel execution of simulations  
+- Use of robust optimization methods (lsqnonlin)  
+- Implementation of logging system  
+- Mesh sensitivity analysis  
+
+---
+
+## 📚 Applications
+
+- Rock mechanics  
+- Finite element model updating  
+- Structural dynamics  
+
+---
+
+## 👤 Author
 
 Developed for academic research in numerical modeling of geomaterials.
