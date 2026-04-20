@@ -50,10 +50,12 @@ The calibration procedure follows these steps:
 ├── Funobj2_Prima_trans_iso_BasaltoIrregular1.m
 ├── Run_opt_Prima_trans_iso_BasaltoIrregular1.m
 ├── Run_ansys_prisma_Prima_trans_iso_BasaltoIrregular1.m
+└── README.md
+Data.zip
 ├── Prima_trans_iso_BasaltoIrregular1.txt
 ├── Prima_trans_iso_Final_BasaltoIrregular1.txt
 ├── frequencias1.txt
-└── README.md
+
 ```
 
 ---
@@ -141,11 +143,6 @@ The workflow provides:
 - Calibrated material parameters:
   - Young’s modulus (E)  
   - Poisson’s ratio (ν)  
-
-- Natural frequencies:
-  - Flexural mode  
-  - Torsional mode  
-
 - Optimization convergence history  
 
 ---
