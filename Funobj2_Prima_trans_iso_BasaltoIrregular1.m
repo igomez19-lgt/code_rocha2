@@ -1,28 +1,41 @@
 
 
-function yout=Funobj2_Prima_trans_iso_BasaltoIrregular1(x)
+function yout = Funobj2_Prima_trans_iso_BasaltoIrregular1(x)
 
-global Ftor Fflex
+% Objective function for calibration of a numerical model (ANSYS-based)
+% The function updates material properties, runs the simulation,
+% and computes the error between numerical and reference frequencies.
 
-scale_2=1e-0;
+global Ftor Fflex   % Target torsional and flexural frequencies
 
-Modulo = x(1)*1e10;
-Poisson = x(2)/scale_2;
- 
-E_X =Modulo; %Var1
-E_Y=Modulo;  %Var2
-E_Z=E_X;   
-PR_XY=Poisson;   %Var3
-PR_YZ=PR_XY; %Var4 
-PR_XZ=Poisson;   
-G_XY=E_X/(2*(1+PR_XZ));	 %Var5
-G_YZ=G_XY;	
-G_XZ=E_X/(2*(1+PR_XZ));	
- 
-% creating new journal file
-fid  = fopen('Prima_trans_iso_BasaltoIrregular1.txt','r');
+scale_2 = 1e-0;     % Scaling factor (can be adjusted if needed)
+
+% --- Material parameters (design variables) ---
+Modulo  = x(1)*1e10;     % Young's modulus (Pa)
+Poisson = x(2)/scale_2;  % Poisson's ratio
+
+% --- Definition of orthotropic elastic properties ---
+% Assuming transverse isotropy (or simplified isotropic behavior)
+E_X = Modulo; % Young's modulus in X direction
+E_Y = Modulo; % Young's modulus in Y direction
+E_Z = E_X;    % Young's modulus in Z direction
+
+PR_XY = Poisson; % Poisson's ratio XY
+PR_YZ = PR_XY;   % Poisson's ratio YZ
+PR_XZ = Poisson; % Poisson's ratio XZ
+
+% Shear moduli (computed from isotropic relationships)
+G_XY = E_X/(2*(1+PR_XZ));
+G_YZ = G_XY;
+G_XZ = E_X/(2*(1+PR_XZ));
+
+% --- Create updated ANSYS input file ---
+% Read template journal file
+fid = fopen('Prima_trans_iso_BasaltoIrregular1.txt','r');
 f = fread(fid,'*char')';
 fclose(fid);
+
+% Replace placeholder strings with current material parameters
 f = strrep(f,'E_X' , num2str(E_X));
 f = strrep(f,'E_Y' , num2str(E_Y));
 f = strrep(f,'E_Z' , num2str(E_Z));
@@ -33,26 +46,27 @@ f = strrep(f,'G_XY' , num2str(G_XY));
 f = strrep(f,'G_YZ' , num2str(G_YZ));
 f = strrep(f,'G_XZ' , num2str(G_XZ));
 
-fid  = fopen('Prima_trans_iso_Final_BasaltoIrregular1.txt','w');
+% Write updated file to be used by ANSYS
+fid = fopen('Prima_trans_iso_Final_BasaltoIrregular1.txt','w');
 fprintf(fid,'%s',f);
 fclose(fid);
 
-%% Calculations in ansys with input parameters
-% system('C:\"Program Files"\"ANSYS Inc"\v195\Framework\bin\Win64\runwb2.exe -B -R file.db');
-% tic
+%% --- Run ANSYS simulation in batch mode ---
+% Executes ANSYS using the generated input file
 !"C:\Program Files\ANSYS Inc\v192\ansys\bin\winx64\ANSYS192.exe" -b -i Prima_trans_iso_Final_BasaltoIrregular1.txt -o Output.txt
-% toc
-%% saving the output parameter
 
-Freq=importdata('frequencias1.txt');
-% yout(1,1)=log(Freq(1)/5131.17216607617);
-% yout(2,1)=log(Freq(3)/5450.80009404977);
+%% --- Import simulation results ---
+% Read computed natural frequencies from output file
+Freq = importdata('frequencias1.txt');
 
-w_flex = 1.0;
-w_tors = 1.0;
+% --- Objective function definition ---
+% Weighted error between numerical and reference frequencies
+w_flex = 1.0; % Weight for flexural mode
+w_tors = 1.0; % Weight for torsional mode
 
-yout(1,1) = w_flex*abs((Freq(1)^2 - Fflex^2)/Fflex^2)+w_tors*abs((Freq(2)^2 - Ftor^2)/Ftor^2);
-
+% Error based on squared frequency difference (relative form)
+yout(1,1) = w_flex * abs((Freq(1)^2 - Fflex^2)/Fflex^2) + ...
+            w_tors * abs((Freq(2)^2 - Ftor^2)/Ftor^2);
 
 end
 
