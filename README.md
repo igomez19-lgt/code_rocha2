@@ -10,7 +10,7 @@ The workflow enables an automated and reproducible procedure for:
 - Updating elastic material properties  
 - Generating ANSYS input files from a template  
 - Running simulations in batch mode  
-- Extracting natural frequencies  
+- Extracting natural frequencies from ANSYS model  
 - Calibrating model parameters through optimization  
 
 The primary goal is to match numerical predictions with **experimental flexural and torsional natural frequencies**.
@@ -108,7 +108,7 @@ Execute in MATLAB:
 This step:
 - Updates material parameters  
 - Runs ANSYS in batch mode  
-- Extracts natural frequencies  
+- Extracts natural frequencies from ANSYS model 
 
 ---
 
