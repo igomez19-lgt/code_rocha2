@@ -71,5 +71,50 @@ The process follows these steps:
 
 ### 1. Prepare ANSYS Template
 
-Ensure the template file:
+Ensure the template file: Prima_trans_iso_BasaltoIrregular1.txt
 
+contains:
+
+E_X, E_Y, E_Z
+PR_XY, PR_YZ, PR_XZ
+G_XY, G_YZ, G_XZ
+
+
+---
+
+### 2. Configure ANSYS Path
+
+```matlab
+!"C:\Program Files\ANSYS Inc\v192\ansys\bin\winx64\ANSYS192.exe"
+
+
+### Run Calibration
+main_optimization
+📐 Objective Function
+Error = w_flex * |(f_num^2 - f_ref^2)/f_ref^2|
+      + w_tors * |(f_num^2 - f_ref^2)/f_ref^2|
+📊 Output
+Calibrated parameters (E, ν)
+Natural frequencies (flexural, torsional)
+Optimization history
+🧪 Assumptions
+G = E / (2 * (1 + ν))
+Isotropic material
+ANSYS batch execution
+Fixed output format
+⚠️ Limitations
+No ANSYS error handling
+Sequential execution
+Manual path configuration
+🔧 Suggested Improvements
+Parallel execution
+Robust optimization (lsqnonlin)
+Logging system
+Mesh sensitivity analysis
+📚 Applications
+Rock mechanics
+FEM model updating
+Structural dynamics
+👤 Author
+
+Developed for academic research in numerical modeling of geomaterials.
