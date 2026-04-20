@@ -56,6 +56,7 @@ Data.zip
 ├── Prima_trans_iso_Final_BasaltoIrregular1.txt
 ├── frequencias1.txt
 
+Attached is a .zip file containing the requested text files (compressed due to size).
 ```
 
 ---
