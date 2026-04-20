@@ -51,7 +51,7 @@ fid = fopen('Prima_trans_iso_Final_BasaltoIrregular1.txt','w');
 fprintf(fid,'%s',f);
 fclose(fid);
 
-%% --- Run ANSYS simulation in batch mode ---
+%% --- Run ANSYS simulation in batch mode --
 % Executes ANSYS using the generated input file
 !"C:\Program Files\ANSYS Inc\v192\ansys\bin\winx64\ANSYS192.exe" -b -i Prima_trans_iso_Final_BasaltoIrregular1.txt -o Output.txt
 
@@ -59,7 +59,7 @@ fclose(fid);
 % Read computed natural frequencies from output file
 Freq = importdata('frequencias1.txt');
 
-% --- Objective function definition ---
+% --- Objective function definition --
 % Weighted error between numerical and reference frequencies
 w_flex = 1.0; % Weight for flexural mode
 w_tors = 1.0; % Weight for torsional mode
