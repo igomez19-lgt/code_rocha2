@@ -1,54 +1,56 @@
-
 # Numerical Calibration of Basalt Specimens using ANSYS Modal Analysis
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![DOI](https://img.shields.io/badge/DOI-10.0000%2Fexample-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-##  Overview
+---
 
-This repository provides MATLAB scripts for the **calibration of a numerical finite element model** of basalt specimens using **modal analysis in ANSYS**.
+## 📌 Overview
 
-The workflow automates:
-- Updating material properties
-- Generating ANSYS input files
-- Running simulations in batch mode
-- Extracting natural frequencies
-- Calibrating parameters via optimization
+This repository contains MATLAB scripts developed for the **calibration of a finite element model** of basalt specimens using **modal analysis performed in ANSYS**.
 
-The goal is to match numerical results with **experimental flexural and torsional frequencies**.
+The workflow enables an automated and reproducible procedure for:
+- Updating elastic material properties  
+- Generating ANSYS input files from a template  
+- Running simulations in batch mode  
+- Extracting natural frequencies  
+- Calibrating model parameters through optimization  
+
+The primary goal is to match numerical predictions with **experimental flexural and torsional natural frequencies**.
 
 ---
 
-##  Objective
+## 🎯 Objective
 
-The main objective is to estimate material parameters that minimize the difference between:
+The objective of this project is to estimate material parameters that minimize the discrepancy between:
 
-- Numerical natural frequencies (ANSYS)
-- Experimental reference frequencies
+- Numerical natural frequencies (computed in ANSYS)  
+- Experimental reference frequencies  
 
 The calibration focuses on:
-- Young’s modulus (E)
-- Poisson’s ratio (ν)
+- Young’s modulus (E)  
+- Poisson’s ratio (ν)  
 
 ---
 
-##  Methodology
+## 🧠 Methodology
 
-The process follows these steps:
+The calibration procedure follows these steps:
 
-1. Define initial material parameters  
-2. Update ANSYS input file (template-based)  
-3. Run ANSYS modal analysis (batch mode)  
+1. Define initial guesses for material parameters  
+2. Update the ANSYS input file using a parameterized template  
+3. Run ANSYS modal analysis in batch mode  
 4. Extract computed natural frequencies  
-5. Evaluate objective function  
+5. Evaluate the objective function (error metric)  
 6. Optimize parameters using MATLAB  
 
 ---
 
-##  Repository Structure
+## 📁 Repository Structure
 
-
+```
+.
 ├── Funobj2_Prima_trans_iso_BasaltoIrregular1.m
 ├── Run_opt_Prima_trans_iso_BasaltoIrregular1.m
 ├── Run_ansys_prisma_Prima_trans_iso_BasaltoIrregular1.m
@@ -56,6 +58,7 @@ The process follows these steps:
 ├── Prima_trans_iso_Final_BasaltoIrregular1.txt
 ├── frequencias1.txt
 └── README.md
+```
 
 ---
 
@@ -63,79 +66,90 @@ The process follows these steps:
 
 - MATLAB  
 - ANSYS Mechanical APDL (batch mode enabled)  
-- Windows OS  
+- Windows OS (required for ANSYS execution path)  
 
 ---
 
-##  How to Use
+## 🚀 How to Use
 
 ### 1. Prepare ANSYS Template
 
-Ensure the template file: Prima_trans_iso_BasaltoIrregular1.txt
+Ensure the template file:
 
-contains:
+`Prima_trans_iso_BasaltoIrregular1.txt`
 
-E_X, E_Y, E_Z
-PR_XY, PR_YZ, PR_XZ
-G_XY, G_YZ, G_XZ
+contains the following placeholders:
 
+```
+E_X, E_Y, E_Z  
+PR_XY, PR_YZ, PR_XZ  
+G_XY, G_YZ, G_XZ  
+```
+
+These placeholders are automatically replaced by MATLAB during execution.
 
 ---
 
 ### 2. Configure ANSYS Path
 
+Update the ANSYS executable path if necessary:
+
 ```matlab
 !"C:\Program Files\ANSYS Inc\v192\ansys\bin\winx64\ANSYS192.exe"
-
-## 🚀 Usage
-
-### 3. Run a Single Simulation
-
-Execute the following script in MATLAB:
-
-`run_simulation`
-
-This will:
-- Update material parameters  
-- Run ANSYS in batch mode  
-- Extract natural frequencies  
+```
 
 ---
 
-### 4. Run Calibration
+### 3. Run a Single Simulation
+
+Execute in MATLAB:
+
+`Run_ansys_prisma_Prima_trans_iso_BasaltoIrregular1`
+
+This step:
+- Updates material parameters  
+- Runs ANSYS in batch mode  
+- Extracts natural frequencies  
+
+---
+
+### 4. Run Calibration (Optimization)
 
 Execute:
 
-`main_optimization`
+`Run_opt_Prima_trans_iso_BasaltoIrregular1`
 
-This will:
-- Minimize the objective function  
-- Calibrate material properties  
-- Output optimized parameters  
+This step:
+- Minimizes the objective function  
+- Calibrates material parameters  
+- Returns optimized values  
 
 ---
 
 ## 📐 Objective Function
 
-The error is defined as:
+The error function is defined as:
 
-Error = w_flex · |(f_num² - f_ref²) / f_ref²| + w_tors · |(f_num² - f_ref²) / f_ref²|
+Error = w_flex · |(f_num² − f_ref²) / f_ref²|  
+        + w_tors · |(f_num² − f_ref²) / f_ref²|
 
 Where:
-- f_num: numerical frequency  
-- f_ref: experimental/reference frequency  
+- f_num = numerical frequency  
+- f_ref = experimental/reference frequency  
 
 ---
 
 ## 📊 Output
 
+The workflow provides:
+
 - Calibrated material parameters:
-  - Young’s modulus (E)
-  - Poisson’s ratio (ν)
+  - Young’s modulus (E)  
+  - Poisson’s ratio (ν)  
 
 - Natural frequencies:
-  - Flexural mode
-  - Torsional mode
+  - Flexural mode  
+  - Torsional mode  
 
 - Optimization convergence history  
 
@@ -143,41 +157,49 @@ Where:
 
 ## 🧪 Assumptions
 
-- Isotropic material behavior  
+- Linear elastic and isotropic material behavior  
 - Shear modulus computed as:
 
 G = E / (2 · (1 + ν))
 
 - ANSYS executed in batch mode  
-- Fixed and consistent output format  
+- Fixed and consistent output file format  
 
 ---
 
 ## ⚠️ Limitations
 
-- No error handling for ANSYS execution  
+- No error handling for ANSYS execution failures  
 - Sequential execution (no parallelization)  
-- Manual configuration of file paths  
+- Manual configuration of file paths required  
+- Dependence on external ANSYS installation  
 
 ---
 
 ## 🔧 Suggested Improvements
 
 - Parallel execution of simulations  
-- Use of robust optimization methods (lsqnonlin)  
-- Implementation of logging system  
-- Mesh sensitivity analysis  
+- Use of robust optimization methods (e.g., `lsqnonlin`)  
+- Implementation of logging and error handling  
+- Automated mesh sensitivity analysis  
 
 ---
 
 ## 📚 Applications
 
-- Rock mechanics  
+- Rock mechanics and geomaterials characterization  
 - Finite element model updating  
-- Structural dynamics  
+- Structural dynamics analysis  
+- Non-destructive evaluation  
 
 ---
 
 ## 👤 Author
 
-Developed for academic research in numerical modeling of geomaterials.
+Developed for academic research in numerical modeling and calibration of geomaterials.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
